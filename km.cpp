@@ -64,18 +64,24 @@ string subs(string i1, string i2)
         bInt = stoi(i2.substr(i, 1));
         diff = aInt - bInt;
         if (diff >= 0)
+        {
             result.insert(0, to_string(diff));
+        }
         else
         {
             // borrow from the previous column
             int j = i - 1;
             while (j >= 0)
             {
+                
                 i1[j] = ((i1[j]-'0') - 1) % 10 + '0';
-                if (i1[j] != '9')
-                    break;
-                else
+                if (i1[j] == '/')
+                {
+                    i1[j] = '9';
                     j--;
+                }
+                else
+                    break;
             }
             result.insert(0, to_string(diff+10));
         }
